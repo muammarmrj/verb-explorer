@@ -39,6 +39,7 @@ input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:v
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px}
 .fm{display:block;color:var(--muted);font-size:.82rem}
 footer a{color:var(--accent)}footer{margin:0 0 12px;color:var(--muted);font-size:.9rem}summary{cursor:pointer}
+.az{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}.az button{min-width:34px;padding:5px 8px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;font:inherit;cursor:pointer}.az button.on{background:var(--accent);color:#fff;border-color:var(--accent)}.az button:disabled{opacity:.3;cursor:default}.az.off{opacity:.5}
 .empty{color:var(--muted);padding:20px 0}
 </style>
 </head>
@@ -47,7 +48,7 @@ footer a{color:var(--accent)}footer{margin:0 0 12px;color:var(--muted);font-size
 <header><h1 id="ttl"></h1><div class="lang"><button data-l="id">ID</button><button data-l="en">EN</button></div></header>
 <p class="sub" id="sub"></p><p class="sub" id="cnt"></p>
 <footer><details><summary id="abs"></summary><p id="abt"></p></details><p><a id="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfQisvpnamXDT9kbEwNd7PmX7xU5uJGSe-DAfEFgoRpispolg/viewform?usp=publish-editor" target="_blank" rel="noopener"></a></p></footer>
-<div id="list"><div class="share" id="gsh"></div><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div><div class="grid" id="grid"></div></div>
+<div id="list"><div class="share" id="gsh"></div><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div><div class="az" id="az"></div><div class="grid" id="grid"></div></div>
 <div id="detail" hidden></div><div class="toast" id="toast" hidden></div>
 </main>
 <script>
@@ -510,7 +511,169 @@ var V=[
 ["rebuild","rebuilt","rebuilt","rebuilding","rebuilds","membangun kembali","the wall",1],
 ["rewrite","rewrote","rewritten","rewriting","rewrites","menulis ulang","the essay",1],
 ["retell","retold","retold","retelling","retells","menceritakan kembali","the story",1],
-["rethink","rethought","rethought","rethinking","rethinks","memikirkan kembali","the plan",1]];
+["rethink","rethought","rethought","rethinking","rethinks","memikirkan kembali","the plan",1],
+["achieve","achieved","achieved","achieving","achieves","mencapai","her goal",0],
+["adapt","adapted","adapted","adapting","adapts","beradaptasi","to the change",0],
+["adjust","adjusted","adjusted","adjusting","adjusts","menyesuaikan","the volume",0],
+["admit","admitted","admitted","admitting","admits","mengakui","her mistake",0],
+["analyze","analyzed","analyzed","analyzing","analyzes","menganalisis","the data",0],
+["appreciate","appreciated","appreciated","appreciating","appreciates","menghargai","her help",0],
+["approach","approached","approached","approaching","approaches","mendekati","the gate",0],
+["assign","assigned","assigned","assigning","assigns","memberikan tugas","homework",0],
+["attach","attached","attached","attaching","attaches","melampirkan","a file",0],
+["award","awarded","awarded","awarding","awards","menganugerahkan","a prize",0],
+["behave","behaved","behaved","behaving","behaves","bersikap","well",0],
+["calm","calmed","calmed","calming","calms","menenangkan","the baby",0],
+["challenge","challenged","challenged","challenging","challenges","menantang","her friend",0],
+["charge","charged","charged","charging","charges","mengisi daya","the phone",0],
+["claim","claimed","claimed","claiming","claims","mengklaim","a prize",0],
+["clarify","clarified","clarified","clarifying","clarifies","menjelaskan","the question",0],
+["clear","cleared","cleared","clearing","clears","membersihkan","the table",0],
+["click","clicked","clicked","clicking","clicks","mengeklik","the link",0],
+["communicate","communicated","communicated","communicating","communicates","berkomunikasi","with her team",0],
+["complain","complained","complained","complaining","complains","mengeluh","about the noise",0],
+["concentrate","concentrated","concentrated","concentrating","concentrates","berkonsentrasi","on the lesson",0],
+["confuse","confused","confused","confusing","confuses","membingungkan","the visitors",0],
+["contribute","contributed","contributed","contributing","contributes","menyumbang","an idea",0],
+["convince","convinced","convinced","convincing","convinces","meyakinkan","her parents",0],
+["cool","cooled","cooled","cooling","cools","mendinginkan","the soup",0],
+["defeat","defeated","defeated","defeating","defeats","mengalahkan","the champion",0],
+["define","defined","defined","defining","defines","mendefinisikan","the word",0],
+["delay","delayed","delayed","delaying","delays","menunda","the meeting",0],
+["delete","deleted","deleted","deleting","deletes","menghapus","the file",0],
+["demonstrate","demonstrated","demonstrated","demonstrating","demonstrates","memperagakan","the method",0],
+["depend","depended","depended","depending","depends","bergantung","on her friend",0],
+["deserve","deserved","deserved","deserving","deserves","pantas mendapat","a reward",0],
+["direct","directed","directed","directing","directs","mengarahkan","the traffic",0],
+["disagree","disagreed","disagreed","disagreeing","disagrees","tidak setuju","with him",0],
+["discover","discovered","discovered","discovering","discovers","menemukan","a new path",0],
+["disturb","disturbed","disturbed","disturbing","disturbs","mengganggu","the class",0],
+["divide","divided","divided","dividing","divides","membagi","the cake",0],
+["document","documented","documented","documenting","documents","mendokumentasikan","the results",0],
+["donate","donated","donated","donating","donates","menyumbangkan","old clothes",0],
+["double","doubled","doubled","doubling","doubles","menggandakan","the recipe",0],
+["educate","educated","educated","educating","educates","mendidik","young people",0],
+["elect","elected","elected","electing","elects","memilih","a leader",0],
+["emphasize","emphasized","emphasized","emphasizing","emphasizes","menekankan","the point",0],
+["employ","employed","employed","employing","employs","mempekerjakan","ten workers",0],
+["ensure","ensured","ensured","ensuring","ensures","memastikan","the safety",0],
+["erase","erased","erased","erasing","erases","menghapus","the board",0],
+["estimate","estimated","estimated","estimating","estimates","memperkirakan","the cost",0],
+["evaluate","evaluated","evaluated","evaluating","evaluates","mengevaluasi","the project",0],
+["expand","expanded","expanded","expanding","expands","memperluas","the garden",0],
+["explore","explored","explored","exploring","explores","menjelajahi","the cave",0],
+["express","expressed","expressed","expressing","expresses","mengungkapkan","her ideas",0],
+["file","filed","filed","filing","files","mengarsipkan","the papers",0],
+["filter","filtered","filtered","filtering","filters","menyaring","the water",0],
+["forward","forwarded","forwarded","forwarding","forwards","meneruskan","the message",0],
+["found","founded","founded","founding","founds","mendirikan","a company",0],
+["frighten","frightened","frightened","frightening","frightens","menakuti","the cat",0],
+["fulfill","fulfilled","fulfilled","fulfilling","fulfills","memenuhi","her dream",0],
+["gain","gained","gained","gaining","gains","memperoleh","new skills",0],
+["generate","generated","generated","generating","generates","menghasilkan","new ideas",0],
+["glance","glanced","glanced","glancing","glances","melirik","at the clock",0],
+["graduate","graduated","graduated","graduating","graduates","lulus","from school",0],
+["highlight","highlighted","highlighted","highlighting","highlights","menyorot","the key words",0],
+["hire","hired","hired","hiring","hires","mempekerjakan","a driver",0],
+["illustrate","illustrated","illustrated","illustrating","illustrates","mengilustrasikan","the story",0],
+["impress","impressed","impressed","impressing","impresses","mengesankan","the judges",0],
+["increase","increased","increased","increasing","increases","meningkatkan","the speed",0],
+["influence","influenced","influenced","influencing","influences","memengaruhi","her friends",0],
+["inspire","inspired","inspired","inspiring","inspires","menginspirasi","her students",0],
+["interrupt","interrupted","interrupted","interrupting","interrupts","menyela","the speaker",0],
+["investigate","investigated","investigated","investigating","investigates","menyelidiki","the problem",0],
+["judge","judged","judged","judging","judges","menilai","the contest",0],
+["launch","launched","launched","launching","launches","meluncurkan","a rocket",0],
+["limit","limited","limited","limiting","limits","membatasi","the time",0],
+["locate","located","located","locating","locates","menemukan lokasi","the station",0],
+["maintain","maintained","maintained","maintaining","maintains","merawat","the garden",0],
+["modify","modified","modified","modifying","modifies","mengubah","the plan",0],
+["monitor","monitored","monitored","monitoring","monitors","memantau","the screen",0],
+["motivate","motivated","motivated","motivating","motivates","memotivasi","her team",0],
+["multiply","multiplied","multiplied","multiplying","multiplies","mengalikan","two numbers",0],
+["obtain","obtained","obtained","obtaining","obtains","memperoleh","a copy",0],
+["participate","participated","participated","participating","participates","berpartisipasi","in the game",0],
+["pause","paused","paused","pausing","pauses","menjeda","the video",0],
+["perform","performed","performed","performing","performs","menampilkan","a dance",0],
+["persuade","persuaded","persuaded","persuading","persuades","membujuk","her friend",0],
+["postpone","postponed","postponed","postponing","postpones","menunda","the exam",0],
+["praise","praised","praised","praising","praises","memuji","her students",0],
+["predict","predicted","predicted","predicting","predicts","memprediksi","the weather",0],
+["preserve","preserved","preserved","preserving","preserves","mengawetkan","the food",0],
+["prevent","prevented","prevented","preventing","prevents","mencegah","the accident",0],
+["process","processed","processed","processing","processes","memproses","the data",0],
+["produce","produced","produced","producing","produces","menghasilkan","fresh milk",0],
+["program","programed","programed","programing","programs","memprogram","the robot",0],
+["pronounce","pronounced","pronounced","pronouncing","pronounces","melafalkan","the word",0],
+["propose","proposed","proposed","proposing","proposes","mengusulkan","a plan",0],
+["provide","provided","provided","providing","provides","menyediakan","free water",0],
+["purchase","purchased","purchased","purchasing","purchases","membeli","a ticket",0],
+["quiz","quized","quized","quizing","quizes","menguji","the students",0],
+["rank","ranked","ranked","ranking","ranks","memeringkat","the players",0],
+["realize","realized","realized","realizing","realizes","menyadari","the mistake",0],
+["receive","received","received","receiving","receives","menerima","a gift",0],
+["recognize","recognized","recognized","recognizing","recognizes","mengenali","her voice",0],
+["recommend","recommended","recommended","recommending","recommends","merekomendasikan","a book",0],
+["refuse","refused","refused","refusing","refuses","menolak","the offer",0],
+["register","registered","registered","registering","registers","mendaftar","for the course",0],
+["reject","rejected","rejected","rejecting","rejects","menolak","the idea",0],
+["release","released","released","releasing","releases","merilis","the news",0],
+["renew","renewed","renewed","renewing","renews","memperbarui","the card",0],
+["represent","represented","represented","representing","represents","mewakili","her class",0],
+["resolve","resolved","resolved","resolving","resolves","menyelesaikan","the conflict",0],
+["respond","responded","responded","responding","responds","menanggapi","to the email",0],
+["restore","restored","restored","restoring","restores","memulihkan","the old photo",0],
+["reveal","revealed","revealed","revealing","reveals","mengungkap","the secret",0],
+["revise","revised","revised","revising","revises","merevisi","the essay",0],
+["scare","scared","scared","scaring","scares","menakuti","the birds",0],
+["schedule","scheduled","scheduled","scheduling","schedules","menjadwalkan","a meeting",0],
+["shorten","shortened","shortened","shortening","shortens","memperpendek","the story",0],
+["shrug","shrugged","shrugged","shrugging","shrugs","mengangkat bahu","her shoulders",0],
+["signal","signaled","signaled","signaling","signals","memberi isyarat","the driver",0],
+["simplify","simplified","simplified","simplifying","simplifies","menyederhanakan","the problem",0],
+["smooth","smoothed","smoothed","smoothing","smooths","menghaluskan","the paper",0],
+["spoil","spoiled","spoiled","spoiling","spoils","merusak","the surprise",0],
+["state","stated","stated","stating","states","menyatakan","her opinion",0],
+["strengthen","strengthened","strengthened","strengthening","strengthens","memperkuat","her muscles",0],
+["subscribe","subscribed","subscribed","subscribing","subscribes","berlangganan","to the channel",0],
+["summarize","summarized","summarized","summarizing","summarizes","meringkas","the text",0],
+["supervise","supervised","supervised","supervising","supervises","mengawasi","the work",0],
+["transform","transformed","transformed","transforming","transforms","mengubah","the room",0],
+["transport","transported","transported","transporting","transports","mengangkut","the goods",0],
+["verify","verified","verified","verifying","verifies","memverifikasi","the facts",0],
+["awake","awoke","awoken","awaking","awakes","terbangun","early",1],
+["bear","bore","borne","bearing","bears","menanggung","a heavy bag",1],
+["bet","bet","bet","betting","bets","bertaruh","money",1],
+["cast","cast","cast","casting","casts","melemparkan","a net",1],
+["cling","clung","clung","clinging","clings","berpegangan","to the rope",1],
+["creep","crept","crept","creeping","creeps","merayap","up the stairs",1],
+["kneel","knelt","knelt","kneeling","kneels","berlutut","on the floor",1],
+["lie","lay","lain","lying","lies","berbaring","on the sofa",1],
+["mislead","misled","misled","misleading","misleads","menyesatkan","the visitors",1],
+["outdo","outdid","outdone","outdoing","outdos","mengungguli","her rival",1],
+["outgrow","outgrew","outgrown","outgrowing","outgrows","tumbuh terlalu besar untuk","her shoes",1],
+["overcome","overcame","overcome","overcoming","overcomes","mengatasi","a fear",1],
+["override","overrode","overridden","overriding","overrides","membatalkan","the setting",1],
+["oversee","oversaw","overseen","overseeing","oversees","mengawasi","the project",1],
+["prove","proved","proven","proving","proves","membuktikan","the theory",1],
+["retake","retook","retaken","retaking","retakes","mengulang","the test",1],
+["rewind","rewound","rewound","rewinding","rewinds","memutar ulang","the tape",1],
+["saw","sawed","sawn","sawing","saws","menggergaji","a log",1],
+["shed","shed","shed","sheding","sheds","menanggalkan","her coat",1],
+["shine","shined","shined","shining","shines","menyemir","the shoes",1],
+["sling","slung","slung","slinging","slings","menyampirkan","a bag over her shoulder",1],
+["sow","sowed","sown","sowing","sows","menabur","seeds",1],
+["swear","swore","sworn","swearing","swears","bersumpah","an oath",1],
+["tread","trod","trodden","treading","treads","melangkah","on the grass",1],
+["undergo","underwent","undergone","undergoing","undergos","menjalani","a test",1],
+["undertake","undertook","undertaken","undertaking","undertakes","melaksanakan","a project",1],
+["uphold","upheld","upheld","upholding","upholds","menegakkan","the rules",1],
+["weep","wept","wept","weeping","weeps","menangis","for joy",1],
+["withhold","withheld","withheld","withholding","withholds","menahan","the information",1],
+["withstand","withstood","withstood","withstanding","withstands","bertahan terhadap","the heat",1],
+["wring","wrung","wrung","wringing","wrings","memeras","the towel",1],
+["unwind","unwound","unwound","unwinding","unwinds","bersantai","after work",1]
+];
 V.sort(function(a,b){return a[0]<b[0]?-1:1});
 var M=[
 ["can","dapat; bisa; boleh","can (sekarang) → could (lampau) / be able to (future)",[["Kemampuan (ability)","She can swim very fast."],["Izin tidak formal (permission)","You can use my pen."],["Permintaan (request)","Can you help me with this?"]]],
@@ -542,7 +705,7 @@ var T=[
 ["Future Perfect Continuous","Mendatang Sempurna Berlangsung",function(v){return "will have been "+v[3]},"for an hour by noon"]];
 var L={id:{ttl:"Verb Explorer",sub:"Cari verb dan lihat semua bentuk serta contoh kalimatnya di 12 tenses.",ph:"Cari verb atau arti… (contoh: go, makan)",all:"Semua",reg:"Beraturan (Regular)",irr:"Tidak Beraturan (Irregular)",r:"Regular",i:"Irregular",none:"Verb tidak ditemukan.",back:"← Kembali",f:["V1 (dasar)","V2 (lampau)","V3 (participle)","V-ing","V-s/es"],ex:"Contoh kalimat di 12 tenses",cnt:" verb · ",cm:" modal",mod:"Modal",st:"Stative",stn:"Kata kerja stative (keadaan) jarang dipakai dalam bentuk continuous. Kalimat bertanda ⚠ benar secara tata bahasa, tetapi tidak dipakai secara alami dalam kehidupan sehari-hari; biasanya dipakai bentuk simple.",rare:"Jarang dipakai",mn:"Modal murni (can, may, must, dll.) tidak memakai -s, -ed, atau -ing dan selalu diikuti kata kerja bentuk dasar (V1). Have to dan ought to termasuk semi-modal.",mf:"Bentuk",mu:"Fungsi dan contoh",sh:"Bagikan",cp:"Salin tautan",cd:"Tautan disalin!",fb:"Kirim masukan",abs:"Tentang & cara pakai",abt:"Cari verb dengan mengetik bentuk atau artinya, lalu ketuk untuk melihat semua bentuk dan contoh kalimat di 12 tenses. Contoh kalimat dibuat dari pola yang sama agar mudah dibandingkan, jadi fokuslah pada bentuk verb dan tenses-nya. Ejaan mengikuti American English. Dibuat oleh Muammar Jumran dan Claude. Diperbarui: Oktober 2026.",txt:"Cari regular dan irregular verbs lengkap dengan contoh kalimat di 12 tenses."},
 en:{ttl:"Verb Explorer",sub:"Search a verb and see all its forms and example sentences in 12 tenses.",ph:"Search a verb or meaning… (e.g. go, makan)",all:"All",reg:"Regular",irr:"Irregular",r:"Regular",i:"Irregular",none:"No verbs found.",back:"← Back",f:["V1 (base)","V2 (past)","V3 (participle)","V-ing","V-s/es"],ex:"Example sentences in 12 tenses",cnt:" verbs · ",cm:" modals",mod:"Modals",st:"Stative",stn:"Stative verbs are rarely used in continuous forms. Sentences marked ⚠ are grammatically correct but not used naturally in everyday life; the simple forms are normally used instead.",rare:"Rarely used",mn:"True modals (can, may, must, etc.) take no -s, -ed or -ing and are always followed by the base verb (V1). Have to and ought to are semi-modals.",mf:"Forms",mu:"Uses and examples",sh:"Share",cp:"Copy link",cd:"Link copied!",fb:"Send feedback",abs:"About & how to use",abt:"Search a verb by its form or meaning, then tap it to see all forms and example sentences in 12 tenses. Example sentences follow the same pattern so they are easy to compare, so focus on the verb forms and tenses. Spelling follows American English. Made by Muammar Jumran and Claude. Updated: October 2026.",txt:"Search regular and irregular verbs with example sentences in 12 tenses."}};
-var lang="id",flt="all",cur=null,$=function(i){return document.getElementById(i)};
+var lang="id",flt="all",ltr="A",cur=null,$=function(i){return document.getElementById(i)};
 function sbar(){var s=L[lang];return '<button data-s="n">'+s.sh+'</button><button data-s="w">WhatsApp</button><button data-s="c">'+s.cp+'</button>'}
 function info(){var u=location.href.split("#")[0],t=L[lang].txt;if(cur&&cur.indexOf("m:")===0){var m=M.filter(function(x){return "m:"+x[0]===cur})[0];u+="#m-"+m[0].replace(/ /g,"-");t=m[0]+" — "+m[1]}else if(cur){var v=V.filter(function(x){return x[0]===cur})[0];u+="#"+v[0];t=[v[0],v[1],v[2],v[3]].join(" · ")+" — "+v[5]}return[u,t+" (Verb Explorer)"]}
 function toast(x){var e=$("toast");e.textContent=x;e.hidden=false;setTimeout(function(){e.hidden=true},2000)}
@@ -559,8 +722,9 @@ function render(){
  document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
  $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr],["mod",s.mod]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
  var q=$("q").value.trim().toLowerCase();
- var r=V.filter(function(v){return(flt==="all"||(flt!=="mod"&&(flt==="irr")===!!v[7]))&&(!q||v.slice(0,6).join(" ").toLowerCase().indexOf(q)>-1)});
- var mr=(flt==="all"||flt==="mod")?M.filter(function(m){return !q||(m[0]+" "+m[1]).toLowerCase().indexOf(q)>-1}):[];var mh=mr.map(function(m){return '<button class="vc" data-m="'+m[0]+'"><b>'+m[0]+'</b><span class="tag irr">Modal</span><small>'+cap(m[1])+'</small></button>'}).join("");$("grid").innerHTML=(r.length||mr.length)?r.map(function(v){return '<button class="vc" data-v="'+v[0]+'"><b>'+v[0]+'</b>'+tag(v)+'<small>'+cap(v[5])+'</small></button>'}).join("")+mh:'<p class="empty">'+s.none+'</p>';
+ var r=V.filter(function(v){return(flt==="all"||(flt!=="mod"&&(flt==="irr")===!!v[7]))&&(q?v.slice(0,6).join(" ").toLowerCase().indexOf(q)>-1:(ltr==="*"||v[0].charAt(0).toUpperCase()===ltr))});
+ var av={};V.concat(M).forEach(function(x){av[x[0].charAt(0).toUpperCase()]=1});$("az").className="az"+(q?" off":"");$("az").innerHTML='<button data-a="*" class="'+(ltr==="*"?"on":"")+'">'+s.all+'</button>'+"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(function(c){return '<button data-a="'+c+'" class="'+(ltr===c?"on":"")+'"'+(av[c]?"":" disabled")+'>'+c+'</button>'}).join("");
+ var mr=(flt==="all"||flt==="mod")?M.filter(function(m){return q?(m[0]+" "+m[1]).toLowerCase().indexOf(q)>-1:(flt==="mod"||ltr==="*"||m[0].charAt(0).toUpperCase()===ltr)}):[];var mh=mr.map(function(m){return '<button class="vc" data-m="'+m[0]+'"><b>'+m[0]+'</b><span class="tag irr">Modal</span><small>'+cap(m[1])+'</small></button>'}).join("");$("grid").innerHTML=(r.length||mr.length)?r.map(function(v){return '<button class="vc" data-v="'+v[0]+'"><b>'+v[0]+'</b>'+tag(v)+'<small>'+cap(v[5])+'</small></button>'}).join("")+mh:'<p class="empty">'+s.none+'</p>';
  if(cur&&cur.indexOf("m:")===0){var m=M.filter(function(x){return "m:"+x[0]===cur})[0];$("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+m[0]+'<span class="tag irr">Modal</span></h2><p class="sub">'+cap(m[1])+'</p><div class="f"><span>'+s.mf+'</span><b>'+m[2]+'</b></div><div class="note">'+s.mn+'</div><div class="share">'+sbar()+'</div><h3>'+s.mu+'</h3>'+m[3].map(function(u){return '<div class="t"><h3>'+u[0]+'</h3><p>'+u[1]+'</p></div>'}).join("");$("bk").onclick=function(){cur=null;render()};}
  else if(cur){var v=V.filter(function(x){return x[0]===cur})[0];
   $("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+cap(v[0])+tag(v)+'</h2><p class="sub">'+cap(v[5])+'</p><div class="forms">'+[v[0],v[1],v[2],v[3],v[4]].map(function(x,i){return '<div class="f"><span>'+s.f[i]+'</span><b>'+x+'</b></div>'}).join("")+'</div><div class="share">'+sbar()+'</div>'+(v[8]?'<div class="note">⚠ '+s.stn+'</div>':'')+'<h3>'+s.ex+'</h3>'+T.map(function(t,i){var w=v[8]&&i%2;return '<div class="t'+(w?' w':'')+'"><h3>'+t[0]+' <em>· '+t[1]+'</em>'+(w?' <span class="tag irr">⚠ '+s.rare+'</span>':'')+'</h3><small class="fm">'+TD[i][0]+' · '+TD[i][lang==="id"?1:2]+'</small><p>'+sent(v,t,i)+'</p></div>'}).join("");
@@ -571,10 +735,12 @@ document.addEventListener("click",function(e){var b=e.target.closest("button");i
  if(b.dataset.l){lang=b.dataset.l;render()}
  else if(b.dataset.f){flt=b.dataset.f;render()}
  else if(b.dataset.s){share(b.dataset.s)}
+ else if(b.dataset.a){ltr=b.dataset.a;render()}
  else if(b.dataset.m){cur="m:"+b.dataset.m;render();window.scrollTo(0,0)}
  else if(b.dataset.v){cur=b.dataset.v;render();window.scrollTo(0,0)}});
 $("q").addEventListener("input",render);
 var h=decodeURIComponent(location.hash.slice(1));if(h.indexOf("m-")===0){M.forEach(function(m){if(m[0].replace(/ /g,"-")===h.slice(2))cur="m:"+m[0]})}else if(V.some(function(v){return v[0]===h})){cur=h}
+if(cur&&cur.indexOf("m:")!==0)ltr=cur.charAt(0).toUpperCase();else if(cur)ltr=cur.charAt(2).toUpperCase();
 render();
 </script>
 </body>
