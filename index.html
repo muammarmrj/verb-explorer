@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Verb Explorer</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f8f4;--card:#fff;--text:#24312b;--muted:#5f6f66;--accent:#3d7a5f;--accent2:#e4f0e9;--line:#dbe4dd;--irr:#b4691f;--irr-bg:#fbefe0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161c19;--card:#1f2723;--text:#e6eee9;--muted:#9fb0a6;--accent:#7cc4a0;--accent2:#25352d;--line:#33423a;--irr:#e7a560;--irr-bg:#3a2e20}}
+:root[data-theme="dark"]{--bg:#161c19;--card:#1f2723;--text:#e6eee9;--muted:#9fb0a6;--accent:#7cc4a0;--accent2:#25352d;--line:#33423a;--irr:#e7a560;--irr-bg:#3a2e20}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:1.5rem;margin:.2em 0}
+.sub{color:var(--muted);margin:0 0 14px}
+.lang button,.chips button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;font:inherit;cursor:pointer}
+.lang button:first-child{border-radius:8px 0 0 8px}.lang button:last-child{border-radius:0 8px 8px 0}
+.lang button.on,.chips button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.chips button{border-radius:999px}
+input{width:100%;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
+input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:10px}
+.vc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;cursor:pointer;color:var(--text);font:inherit}
+.vc:hover{border-color:var(--accent)}.vc b{font-size:1.1rem}.vc small{display:block;color:var(--muted)}
+.tag{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:999px;background:var(--accent2);color:var(--accent);margin-left:6px}
+.tag.irr{background:var(--irr-bg);color:var(--irr)}
+.back{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer;padding:8px 0}
+.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:12px 0}
+.f{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}.f span{display:block;font-size:.78rem;color:var(--muted)}.f b{font-size:1.15rem}
+.t{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px}
+.t h3{margin:0;font-size:.95rem;color:var(--accent)}.t p{margin:2px 0 0}.t em{color:var(--muted);font-size:.8rem;font-style:normal}
+.empty{color:var(--muted);padding:20px 0}
+</style>
+</head>
+<body>
+<main>
+<header><h1 id="ttl"></h1><div class="lang"><button data-l="id">ID</button><button data-l="en">EN</button></div></header>
+<p class="sub" id="sub"></p>
+<div id="list"><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div><div class="grid" id="grid"></div></div>
+<div id="detail" hidden></div>
+</main>
+<script>
+// [base, past, pp, ing, 3rd person -s, arti Indonesia, objek contoh, irregular?]
+var V=[
+["walk","walked","walked","walking","walks","berjalan","to school",0],
+["play","played","played","playing","plays","bermain","football",0],
+["study","studied","studied","studying","studies","belajar","English",0],
+["work","worked","worked","working","works","bekerja","hard",0],
+["learn","learned","learned","learning","learns","mempelajari","new words",0],
+["help","helped","helped","helping","helps","membantu","her friends",0],
+["open","opened","opened","opening","opens","membuka","the door",0],
+["watch","watched","watched","watching","watches","menonton","a movie",0],
+["clean","cleaned","cleaned","cleaning","cleans","membersihkan","the classroom",0],
+["listen","listened","listened","listening","listens","mendengarkan","to music",0],
+["go","went","gone","going","goes","pergi","to school",1],
+["eat","ate","eaten","eating","eats","makan","rice",1],
+["write","wrote","written","writing","writes","menulis","a letter",1],
+["read","read","read","reading","reads","membaca","a book",1],
+["take","took","taken","taking","takes","mengambil","a photo",1],
+["see","saw","seen","seeing","sees","melihat","a rainbow",1],
+["make","made","made","making","makes","membuat","a cake",1],
+["buy","bought","bought","buying","buys","membeli","new shoes",1],
+["drink","drank","drunk","drinking","drinks","minum","water",1],
+["sing","sang","sung","singing","sings","menyanyi","a song",1]];
+var T=[
+["Simple Present","Sekarang Sederhana",function(v){return v[4]},"every day"],
+["Present Continuous","Sekarang Berlangsung",function(v){return "is "+v[3]},"right now"],
+["Present Perfect","Sekarang Sempurna",function(v){return "has "+v[2]},"already"],
+["Present Perfect Continuous","Sekarang Sempurna Berlangsung",function(v){return "has been "+v[3]},"for an hour"],
+["Simple Past","Lampau Sederhana",function(v){return v[1]},"yesterday"],
+["Past Continuous","Lampau Berlangsung",function(v){return "was "+v[3]},"at 7 p.m. last night"],
+["Past Perfect","Lampau Sempurna",function(v){return "had "+v[2]},"before the bell rang"],
+["Past Perfect Continuous","Lampau Sempurna Berlangsung",function(v){return "had been "+v[3]},"for an hour before class"],
+["Simple Future","Mendatang Sederhana",function(v){return "will "+v[0]},"tomorrow"],
+["Future Continuous","Mendatang Berlangsung",function(v){return "will be "+v[3]},"at 7 p.m. tomorrow"],
+["Future Perfect","Mendatang Sempurna",function(v){return "will have "+v[2]},"by next Friday"],
+["Future Perfect Continuous","Mendatang Sempurna Berlangsung",function(v){return "will have been "+v[3]},"for an hour by noon"]];
+var L={id:{ttl:"Verb Explorer",sub:"Cari verb dan lihat semua bentuk serta contoh kalimatnya di 12 tenses.",ph:"Cari verb atau arti… (contoh: go, makan)",all:"Semua",reg:"Beraturan (Regular)",irr:"Tidak Beraturan (Irregular)",r:"Regular",i:"Irregular",none:"Verb tidak ditemukan.",back:"← Kembali",f:["V1 (dasar)","V2 (lampau)","V3 (participle)","V-ing","V-s/es"],ex:"Contoh kalimat di 12 tenses",cnt:" verb"},
+en:{ttl:"Verb Explorer",sub:"Search a verb and see all its forms and example sentences in 12 tenses.",ph:"Search a verb or meaning… (e.g. go, makan)",all:"All",reg:"Regular",irr:"Irregular",r:"Regular",i:"Irregular",none:"No verbs found.",back:"← Back",f:["V1 (base)","V2 (past)","V3 (participle)","V-ing","V-s/es"],ex:"Example sentences in 12 tenses",cnt:" verbs"}};
+var lang="id",flt="all",cur=null,$=function(i){return document.getElementById(i)};
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function sent(v,t){return "She "+t[2](v)+" "+v[6]+" "+t[3]+"."}
+function tag(v){return '<span class="tag'+(v[7]?' irr':'')+'">'+(v[7]?L[lang].i:L[lang].r)+'</span>'}
+function render(){
+ var s=L[lang];document.documentElement.lang=lang;
+ $("ttl").textContent=s.ttl;$("sub").textContent=s.sub;$("q").placeholder=s.ph;
+ document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
+ $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
+ var q=$("q").value.trim().toLowerCase();
+ var r=V.filter(function(v){return(flt==="all"||(flt==="irr")===!!v[7])&&(!q||v.slice(0,6).join(" ").toLowerCase().indexOf(q)>-1)});
+ $("grid").innerHTML=r.length?r.map(function(v){return '<button class="vc" data-v="'+v[0]+'"><b>'+v[0]+'</b>'+tag(v)+'<small>'+cap(v[5])+'</small></button>'}).join(""):'<p class="empty">'+s.none+'</p>';
+ if(cur){var v=V.filter(function(x){return x[0]===cur})[0];
+  $("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+cap(v[0])+tag(v)+'</h2><p class="sub">'+cap(v[5])+'</p><div class="forms">'+[v[0],v[1],v[2],v[3],v[4]].map(function(x,i){return '<div class="f"><span>'+s.f[i]+'</span><b>'+x+'</b></div>'}).join("")+'</div><h3>'+s.ex+'</h3>'+T.map(function(t){return '<div class="t"><h3>'+t[0]+' <em>· '+t[1]+'</em></h3><p>'+sent(v,t)+'</p></div>'}).join("");
+  $("bk").onclick=function(){cur=null;render()};}
+ $("list").hidden=!!cur;$("detail").hidden=!cur;
+}
+document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+ if(b.dataset.l){lang=b.dataset.l;render()}
+ else if(b.dataset.f){flt=b.dataset.f;render()}
+ else if(b.dataset.v){cur=b.dataset.v;render();window.scrollTo(0,0)}});
+$("q").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
