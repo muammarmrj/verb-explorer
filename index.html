@@ -38,7 +38,7 @@ input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:v
 .share{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.share button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer}.share button:first-child{background:var(--accent);color:#fff;border-color:var(--accent)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px}
 .fm{display:block;color:var(--muted);font-size:.82rem}
-footer a{color:var(--accent)}footer{margin:24px 0 8px;color:var(--muted);font-size:.9rem}summary{cursor:pointer}
+footer a{color:var(--accent)}footer{margin:0 0 12px;color:var(--muted);font-size:.9rem}summary{cursor:pointer}
 .empty{color:var(--muted);padding:20px 0}
 </style>
 </head>
@@ -46,9 +46,9 @@ footer a{color:var(--accent)}footer{margin:24px 0 8px;color:var(--muted);font-si
 <main>
 <header><h1 id="ttl"></h1><div class="lang"><button data-l="id">ID</button><button data-l="en">EN</button></div></header>
 <p class="sub" id="sub"></p><p class="sub" id="cnt"></p>
+<footer><details><summary id="abs"></summary><p id="abt"></p></details><p><a id="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfQisvpnamXDT9kbEwNd7PmX7xU5uJGSe-DAfEFgoRpispolg/viewform?usp=publish-editor" target="_blank" rel="noopener"></a></p></footer>
 <div id="list"><div class="share" id="gsh"></div><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div><div class="grid" id="grid"></div></div>
 <div id="detail" hidden></div><div class="toast" id="toast" hidden></div>
-<footer><details><summary id="abs"></summary><p id="abt"></p></details><p><a id="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfQisvpnamXDT9kbEwNd7PmX7xU5uJGSe-DAfEFgoRpispolg/viewform?usp=publish-editor" target="_blank" rel="noopener"></a></p></footer>
 </main>
 <script>
 // [base, past, pp, ing, 3rd person -s, arti Indonesia, objek contoh, irregular?]
