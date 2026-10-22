@@ -32,13 +32,14 @@ input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:v
 .f{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}.f span{display:block;font-size:.78rem;color:var(--muted)}.f b{font-size:1.15rem}
 .t{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px}
 .t h3{margin:0;font-size:.95rem;color:var(--accent)}.t p{margin:2px 0 0}.t em{color:var(--muted);font-size:.8rem;font-style:normal}
+.note{background:var(--accent2);border-radius:10px;padding:10px 14px;margin:10px 0}.t.w p{color:var(--muted)}
 .empty{color:var(--muted);padding:20px 0}
 </style>
 </head>
 <body>
 <main>
 <header><h1 id="ttl"></h1><div class="lang"><button data-l="id">ID</button><button data-l="en">EN</button></div></header>
-<p class="sub" id="sub"></p>
+<p class="sub" id="sub"></p><p class="sub" id="cnt"></p>
 <div id="list"><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div><div class="grid" id="grid"></div></div>
 <div id="detail" hidden></div>
 </main>
@@ -64,7 +65,115 @@ var V=[
 ["make","made","made","making","makes","membuat","a cake",1],
 ["buy","bought","bought","buying","buys","membeli","new shoes",1],
 ["drink","drank","drunk","drinking","drinks","minum","water",1],
-["sing","sang","sung","singing","sings","menyanyi","a song",1]];
+["sing","sang","sung","singing","sings","menyanyi","a song",1],
+["ask","asked","asked","asking","asks","bertanya","a question",0],
+["answer","answered","answered","answering","answers","menjawab","the question",0],
+["call","called","called","calling","calls","menelepon","her mother",0],
+["carry","carried","carried","carrying","carries","membawa","a heavy bag",0],
+["change","changed","changed","changing","changes","mengubah","the plan",0],
+["close","closed","closed","closing","closes","menutup","the window",0],
+["cook","cooked","cooked","cooking","cooks","memasak","dinner",0],
+["dance","danced","danced","dancing","dances","menari","on stage",0],
+["finish","finished","finished","finishing","finishes","menyelesaikan","her homework",0],
+["follow","followed","followed","following","follows","mengikuti","the teacher",0],
+["invite","invited","invited","inviting","invites","mengundang","her classmates",0],
+["jump","jumped","jumped","jumping","jumps","melompat","over the fence",0],
+["move","moved","moved","moving","moves","memindahkan","the table",0],
+["paint","painted","painted","painting","paints","mengecat; melukis","a picture",0],
+["plan","planned","planned","planning","plans","merencanakan","a trip",0],
+["practice","practiced","practiced","practicing","practices","berlatih","speaking",0],
+["push","pushed","pushed","pushing","pushes","mendorong","the door",0],
+["stay","stayed","stayed","staying","stays","tinggal; menginap","at home",0],
+["start","started","started","starting","starts","memulai","the lesson",0],
+["talk","talked","talked","talking","talks","berbicara","to her teacher",0],
+["travel","traveled","traveled","traveling","travels","bepergian","to Jakarta",0],
+["try","tried","tried","trying","tries","mencoba","a new recipe",0],
+["turn","turned","turned","turning","turns","memutar; berbelok","on the light",0],
+["use","used","used","using","uses","menggunakan","a dictionary",0],
+["visit","visited","visited","visiting","visits","mengunjungi","her grandmother",0],
+["wait","waited","waited","waiting","waits","menunggu","for the bus",0],
+["wash","washed","washed","washing","washes","mencuci","the dishes",0],
+["borrow","borrowed","borrowed","borrowing","borrows","meminjam","a pen",0],
+["brush","brushed","brushed","brushing","brushes","menyikat","her teeth",0],
+["climb","climbed","climbed","climbing","climbs","memanjat","a tree",0],
+["collect","collected","collected","collecting","collects","mengumpulkan","old coins",0],
+["count","counted","counted","counting","counts","menghitung","the books",0],
+["cross","crossed","crossed","crossing","crosses","menyeberang","the road",0],
+["discuss","discussed","discussed","discussing","discusses","mendiskusikan","the topic",0],
+["explain","explained","explained","explaining","explains","menjelaskan","the lesson",0],
+["fix","fixed","fixed","fixing","fixes","memperbaiki","the bike",0],
+["look","looked","looked","looking","looks","melihat","at the board",0],
+["repeat","repeated","repeated","repeating","repeats","mengulang","the sentence",0],
+["return","returned","returned","returning","returns","mengembalikan","the book",0],
+["share","shared","shared","sharing","shares","membagikan","her notes",0],
+["come","came","come","coming","comes","datang","home",1],
+["do","did","done","doing","does","melakukan; mengerjakan","her homework",1],
+["give","gave","given","giving","gives","memberi","a gift",1],
+["find","found","found","finding","finds","menemukan","a pen",1],
+["get","got","gotten","getting","gets","mendapatkan","a letter",1],
+["have","had","had","having","has","memiliki; makan","breakfast",1],
+["leave","left","left","leaving","leaves","meninggalkan; berangkat","home early",1],
+["meet","met","met","meeting","meets","bertemu","her friends",1],
+["run","ran","run","running","runs","berlari","in the park",1],
+["say","said","said","saying","says","berkata","hello",1],
+["sit","sat","sat","sitting","sits","duduk","on the chair",1],
+["sleep","slept","slept","sleeping","sleeps","tidur","early",1],
+["speak","spoke","spoken","speaking","speaks","berbicara","English",1],
+["stand","stood","stood","standing","stands","berdiri","in line",1],
+["swim","swam","swum","swimming","swims","berenang","in the river",1],
+["tell","told","told","telling","tells","menceritakan","a story",1],
+["think","thought","thought","thinking","thinks","berpikir","about the answer",1],
+["teach","taught","taught","teaching","teaches","mengajar","English",1],
+["bring","brought","brought","bringing","brings","membawa","a book",1],
+["begin","began","begun","beginning","begins","memulai","the lesson",1],
+["build","built","built","building","builds","membangun","a house",1],
+["catch","caught","caught","catching","catches","menangkap","the bus",1],
+["choose","chose","chosen","choosing","chooses","memilih","a topic",1],
+["drive","drove","driven","driving","drives","mengemudi","a car",1],
+["fall","fell","fallen","falling","falls","jatuh","from the tree",1],
+["fly","flew","flown","flying","flies","terbang; menerbangkan","a kite",1],
+["forget","forgot","forgotten","forgetting","forgets","lupa","her umbrella",1],
+["hear","heard","heard","hearing","hears","mendengar","a noise",1],
+["hold","held","held","holding","holds","memegang","a pen",1],
+["keep","kept","kept","keeping","keeps","menyimpan; menjaga","a diary",1],
+["lose","lost","lost","losing","loses","kehilangan","her keys",1],
+["pay","paid","paid","paying","pays","membayar","the bill",1],
+["put","put","put","putting","puts","menaruh","the book on the desk",1],
+["ride","rode","ridden","riding","rides","mengendarai","a bike",1],
+["send","sent","sent","sending","sends","mengirim","an email",1],
+["sell","sold","sold","selling","sells","menjual","fruit",1],
+["wear","wore","worn","wearing","wears","memakai","a uniform",1],
+["win","won","won","winning","wins","menang","the game",1],
+["break","broke","broken","breaking","breaks","memecahkan; merusak","a glass",1],
+["cut","cut","cut","cutting","cuts","memotong","the paper",1],
+["draw","drew","drawn","drawing","draws","menggambar","a picture",1],
+["like","liked","liked","liking","likes","menyukai","this song",0,1],
+["love","loved","loved","loving","loves","sangat menyukai; mencintai","her job",0,1],
+["hate","hated","hated","hating","hates","membenci","spicy food",0,1],
+["want","wanted","wanted","wanting","wants","menginginkan","a new bike",0,1],
+["need","needed","needed","needing","needs","membutuhkan","a new pen",0,1],
+["know","knew","known","knowing","knows","mengetahui; mengenal","the answer",1,1],
+["believe","believed","believed","believing","believes","percaya","his story",0,1],
+["understand","understood","understood","understanding","understands","memahami","the lesson",1,1],
+["remember","remembered","remembered","remembering","remembers","mengingat","the password",0,1],
+["prefer","preferred","preferred","preferring","prefers","lebih menyukai","tea",0,1],
+["own","owned","owned","owning","owns","memiliki","a small shop",0,1],
+["belong","belonged","belonged","belonging","belongs","termasuk; menjadi milik","to the English club",0,1]];
+V.sort(function(a,b){return a[0]<b[0]?-1:1});
+var M=[
+["can","dapat; bisa; boleh","can (sekarang) → could (lampau) / be able to (future)",[["Kemampuan (ability)","She can swim very fast."],["Izin tidak formal (permission)","You can use my pen."],["Permintaan (request)","Can you help me with this?"]]],
+["could","dapat (lampau); bisa jadi","could = bentuk lampau can; juga bentuk sopan",[["Kemampuan masa lampau (past ability)","She could read when she was four."],["Permintaan sopan (polite request)","Could you open the window, please?"],["Kemungkinan (possibility)","It could rain this afternoon."]]],
+["may","boleh; mungkin","may (sekarang) / might (kemungkinan lebih kecil)",[["Izin formal (permission)","You may leave early today."],["Kemungkinan (possibility)","It may rain tonight."],["Permintaan formal (formal request)","May I come in?"]]],
+["might","mungkin (kemungkinan kecil)","might = kemungkinan lebih kecil daripada may",[["Kemungkinan kecil (weak possibility)","We might go to the beach this weekend."],["Kalimat tidak langsung (reported)","She said she might be late."]]],
+["must","harus; pasti","must (sekarang) → had to (lampau) / will have to (future)",[["Kewajiban kuat (obligation)","You must wear a helmet."],["Dugaan kuat (deduction)","She must be tired after the trip."],["Larangan (prohibition)","You must not run in the hallway."]]],
+["shall","akan; bagaimana kalau","hampir hanya dipakai dengan I dan we",[["Tawaran (offer)","Shall I carry your bag?"],["Ajakan (suggestion)","Shall we start the lesson?"]]],
+["should","sebaiknya; seharusnya","should (sekarang dan future), tidak berubah bentuk",[["Saran (advice)","You should drink more water."],["Harapan (expectation)","The bus should arrive soon."]]],
+["ought to","sebaiknya; seharusnya","ought to + V1, mirip should tetapi lebih formal",[["Saran/kewajiban moral (advice)","You ought to apologize to her."]]],
+["will","akan","will → would (lampau/pengandaian); sering disingkat ’ll",[["Prediksi (prediction)","It will be sunny tomorrow."],["Janji (promise)","I will help you after class."],["Keputusan spontan (spontaneous decision)","I’ll take the blue one."]]],
+["would","akan (lampau); sudi","would = bentuk lampau will; juga bentuk sopan",[["Tawaran sopan (polite offer)","Would you like some tea?"],["Kebiasaan lampau (past habit)","When I was a child, I would play outside every afternoon."],["Pengandaian (hypothetical)","I would travel more if I had time."]]],
+["have to","harus (karena keadaan)","have/has to (sekarang) → had to (lampau) → will have to (future)",[["Keharusan (necessity)","I have to finish my homework tonight."],["Masa lampau (past)","She had to wake up early yesterday."],["Tidak harus (no necessity)","You don’t have to come if you are busy."]]]
+];
+var SM=["",null,"for years",null,"last year",null,"long before that",null,"soon",null,"by next year",null];
 var T=[
 ["Simple Present","Sekarang Sederhana",function(v){return v[4]},"every day"],
 ["Present Continuous","Sekarang Berlangsung",function(v){return "is "+v[3]},"right now"],
@@ -78,28 +187,30 @@ var T=[
 ["Future Continuous","Mendatang Berlangsung",function(v){return "will be "+v[3]},"at 7 p.m. tomorrow"],
 ["Future Perfect","Mendatang Sempurna",function(v){return "will have "+v[2]},"by next Friday"],
 ["Future Perfect Continuous","Mendatang Sempurna Berlangsung",function(v){return "will have been "+v[3]},"for an hour by noon"]];
-var L={id:{ttl:"Verb Explorer",sub:"Cari verb dan lihat semua bentuk serta contoh kalimatnya di 12 tenses.",ph:"Cari verb atau arti… (contoh: go, makan)",all:"Semua",reg:"Beraturan (Regular)",irr:"Tidak Beraturan (Irregular)",r:"Regular",i:"Irregular",none:"Verb tidak ditemukan.",back:"← Kembali",f:["V1 (dasar)","V2 (lampau)","V3 (participle)","V-ing","V-s/es"],ex:"Contoh kalimat di 12 tenses",cnt:" verb"},
-en:{ttl:"Verb Explorer",sub:"Search a verb and see all its forms and example sentences in 12 tenses.",ph:"Search a verb or meaning… (e.g. go, makan)",all:"All",reg:"Regular",irr:"Irregular",r:"Regular",i:"Irregular",none:"No verbs found.",back:"← Back",f:["V1 (base)","V2 (past)","V3 (participle)","V-ing","V-s/es"],ex:"Example sentences in 12 tenses",cnt:" verbs"}};
+var L={id:{ttl:"Verb Explorer",sub:"Cari verb dan lihat semua bentuk serta contoh kalimatnya di 12 tenses.",ph:"Cari verb atau arti… (contoh: go, makan)",all:"Semua",reg:"Beraturan (Regular)",irr:"Tidak Beraturan (Irregular)",r:"Regular",i:"Irregular",none:"Verb tidak ditemukan.",back:"← Kembali",f:["V1 (dasar)","V2 (lampau)","V3 (participle)","V-ing","V-s/es"],ex:"Contoh kalimat di 12 tenses",cnt:" verb · ",cm:" modal",mod:"Modal",st:"Stative",stn:"Kata kerja stative (keadaan) jarang dipakai dalam bentuk continuous. Kalimat bertanda ⚠ benar secara tata bahasa, tetapi tidak dipakai secara alami dalam kehidupan sehari-hari; biasanya dipakai bentuk simple.",rare:"Jarang dipakai",mn:"Modal murni (can, may, must, dll.) tidak memakai -s, -ed, atau -ing dan selalu diikuti kata kerja bentuk dasar (V1). Have to dan ought to termasuk semi-modal.",mf:"Bentuk",mu:"Fungsi dan contoh"},
+en:{ttl:"Verb Explorer",sub:"Search a verb and see all its forms and example sentences in 12 tenses.",ph:"Search a verb or meaning… (e.g. go, makan)",all:"All",reg:"Regular",irr:"Irregular",r:"Regular",i:"Irregular",none:"No verbs found.",back:"← Back",f:["V1 (base)","V2 (past)","V3 (participle)","V-ing","V-s/es"],ex:"Example sentences in 12 tenses",cnt:" verbs · ",cm:" modals",mod:"Modals",st:"Stative",stn:"Stative verbs are rarely used in continuous forms. Sentences marked ⚠ are grammatically correct but not used naturally in everyday life; the simple forms are normally used instead.",rare:"Rarely used",mn:"True modals (can, may, must, etc.) take no -s, -ed or -ing and are always followed by the base verb (V1). Have to and ought to are semi-modals.",mf:"Forms",mu:"Uses and examples"}};
 var lang="id",flt="all",cur=null,$=function(i){return document.getElementById(i)};
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
-function sent(v,t){return "She "+t[2](v)+" "+v[6]+" "+t[3]+"."}
-function tag(v){return '<span class="tag'+(v[7]?' irr':'')+'">'+(v[7]?L[lang].i:L[lang].r)+'</span>'}
+function sent(v,t,i){var m=(v[8]&&SM[i]!==null)?SM[i]:t[3];return ["She",t[2](v),v[6],m].filter(Boolean).join(" ")+"."}
+function tag(v){return '<span class="tag'+(v[7]?' irr':'')+'">'+(v[7]?L[lang].i:L[lang].r)+'</span>'+(v[8]?'<span class="tag">'+L[lang].st+'</span>':'')}
 function render(){
  var s=L[lang];document.documentElement.lang=lang;
- $("ttl").textContent=s.ttl;$("sub").textContent=s.sub;$("q").placeholder=s.ph;
+ $("ttl").textContent=s.ttl;$("sub").textContent=s.sub;$("cnt").textContent=V.length+s.cnt+M.length+s.cm;$("q").placeholder=s.ph;
  document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
- $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
+ $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr],["mod",s.mod]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
  var q=$("q").value.trim().toLowerCase();
- var r=V.filter(function(v){return(flt==="all"||(flt==="irr")===!!v[7])&&(!q||v.slice(0,6).join(" ").toLowerCase().indexOf(q)>-1)});
- $("grid").innerHTML=r.length?r.map(function(v){return '<button class="vc" data-v="'+v[0]+'"><b>'+v[0]+'</b>'+tag(v)+'<small>'+cap(v[5])+'</small></button>'}).join(""):'<p class="empty">'+s.none+'</p>';
- if(cur){var v=V.filter(function(x){return x[0]===cur})[0];
-  $("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+cap(v[0])+tag(v)+'</h2><p class="sub">'+cap(v[5])+'</p><div class="forms">'+[v[0],v[1],v[2],v[3],v[4]].map(function(x,i){return '<div class="f"><span>'+s.f[i]+'</span><b>'+x+'</b></div>'}).join("")+'</div><h3>'+s.ex+'</h3>'+T.map(function(t){return '<div class="t"><h3>'+t[0]+' <em>· '+t[1]+'</em></h3><p>'+sent(v,t)+'</p></div>'}).join("");
+ var r=V.filter(function(v){return(flt==="all"||(flt!=="mod"&&(flt==="irr")===!!v[7]))&&(!q||v.slice(0,6).join(" ").toLowerCase().indexOf(q)>-1)});
+ var mr=(flt==="all"||flt==="mod")?M.filter(function(m){return !q||(m[0]+" "+m[1]).toLowerCase().indexOf(q)>-1}):[];var mh=mr.map(function(m){return '<button class="vc" data-m="'+m[0]+'"><b>'+m[0]+'</b><span class="tag irr">Modal</span><small>'+cap(m[1])+'</small></button>'}).join("");$("grid").innerHTML=(r.length||mr.length)?r.map(function(v){return '<button class="vc" data-v="'+v[0]+'"><b>'+v[0]+'</b>'+tag(v)+'<small>'+cap(v[5])+'</small></button>'}).join("")+mh:'<p class="empty">'+s.none+'</p>';
+ if(cur&&cur.indexOf("m:")===0){var m=M.filter(function(x){return "m:"+x[0]===cur})[0];$("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+m[0]+'<span class="tag irr">Modal</span></h2><p class="sub">'+cap(m[1])+'</p><div class="f"><span>'+s.mf+'</span><b>'+m[2]+'</b></div><div class="note">'+s.mn+'</div><h3>'+s.mu+'</h3>'+m[3].map(function(u){return '<div class="t"><h3>'+u[0]+'</h3><p>'+u[1]+'</p></div>'}).join("");$("bk").onclick=function(){cur=null;render()};}
+ else if(cur){var v=V.filter(function(x){return x[0]===cur})[0];
+  $("detail").innerHTML='<button class="back" id="bk">'+s.back+'</button><h2 style="margin:0">'+cap(v[0])+tag(v)+'</h2><p class="sub">'+cap(v[5])+'</p><div class="forms">'+[v[0],v[1],v[2],v[3],v[4]].map(function(x,i){return '<div class="f"><span>'+s.f[i]+'</span><b>'+x+'</b></div>'}).join("")+'</div>'+(v[8]?'<div class="note">⚠ '+s.stn+'</div>':'')+'<h3>'+s.ex+'</h3>'+T.map(function(t,i){var w=v[8]&&i%2;return '<div class="t'+(w?' w':'')+'"><h3>'+t[0]+' <em>· '+t[1]+'</em>'+(w?' <span class="tag irr">⚠ '+s.rare+'</span>':'')+'</h3><p>'+sent(v,t,i)+'</p></div>'}).join("");
   $("bk").onclick=function(){cur=null;render()};}
  $("list").hidden=!!cur;$("detail").hidden=!cur;
 }
 document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
  if(b.dataset.l){lang=b.dataset.l;render()}
  else if(b.dataset.f){flt=b.dataset.f;render()}
+ else if(b.dataset.m){cur="m:"+b.dataset.m;render();window.scrollTo(0,0)}
  else if(b.dataset.v){cur=b.dataset.v;render();window.scrollTo(0,0)}});
 $("q").addEventListener("input",render);
 render();
