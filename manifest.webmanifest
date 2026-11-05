@@ -1,0 +1,24 @@
+{
+ "name": "Verb Explorer",
+ "short_name": "Verbs",
+ "description": "Regular and irregular verbs in 12 tenses with quiz",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#f6f8f4",
+ "theme_color": "#3d7a5f",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
