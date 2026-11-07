@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Verb Explorer</title>
-<meta name="theme-color" content="#3d7a5f"><meta name="description" content="Regular and irregular verbs with all forms and example sentences in 12 tenses. Verb beraturan dan tidak beraturan lengkap dengan contoh kalimat.">
+<meta name="theme-color" content="#33705a"><meta name="description" content="Regular and irregular verbs with all forms and example sentences in 12 tenses. Verb beraturan dan tidak beraturan lengkap dengan contoh kalimat.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://muammarmrj.github.io/verb-explorer/"><meta property="og:image" content="https://muammarmrj.github.io/verb-explorer/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta property="og:title" content="Verb Explorer"><meta property="og:description" content="Regular and irregular verbs in 12 tenses · Verb lengkap dengan contoh kalimat 12 tenses">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---bg:#f6f8f4;--card:#fff;--text:#24312b;--muted:#5f6f66;--accent:#3d7a5f;--accent2:#e4f0e9;--line:#dbe4dd;--irr:#b4691f;--irr-bg:#fbefe0}
+--bg:#f6f8f4;--card:#fff;--text:#24312b;--muted:#5f6f66;--accent:#33705a;--accent2:#e4f0e9;--line:#dbe4dd;--irr:#995410;--irr-bg:#fbefe0}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161c19;--card:#1f2723;--text:#e6eee9;--muted:#9fb0a6;--accent:#7cc4a0;--accent2:#25352d;--line:#33423a;--irr:#e7a560;--irr-bg:#3a2e20}}
 :root[data-theme="dark"]{--bg:#161c19;--card:#1f2723;--text:#e6eee9;--muted:#9fb0a6;--accent:#7cc4a0;--accent2:#25352d;--line:#33423a;--irr:#e7a560;--irr-bg:#3a2e20}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -20,7 +20,7 @@ h1{font-size:1.5rem;margin:.2em 0}
 .sub{color:var(--muted);margin:0 0 14px}
 .lang button,.chips button{border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;font:inherit;cursor:pointer}
 .lang button:first-child{border-radius:8px 0 0 8px}.lang button:last-child{border-radius:0 8px 8px 0}
-.lang button.on,.chips button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.lang button.on,.chips button.on{background:var(--accent);color:var(--onacc);border-color:var(--accent)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.chips button{border-radius:999px}
 input{width:100%;padding:12px 14px;font:inherit;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text)}
 input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:var(--accent)}
@@ -35,15 +35,15 @@ input:focus,button:focus-visible{outline:3px solid var(--accent2);border-color:v
 .t{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px}
 .t h3{margin:0;font-size:.95rem;color:var(--accent)}.t p{margin:2px 0 0}.t em{color:var(--muted);font-size:.8rem;font-style:normal}
 .note{background:var(--accent2);border-radius:10px;padding:10px 14px;margin:10px 0}.t.w p{color:var(--muted)}
-.share{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.share button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer}.share button:first-child{background:var(--accent);color:#fff;border-color:var(--accent)}
+.share{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.share button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer}.share button:first-child{background:var(--accent);color:var(--onacc);border-color:var(--accent)}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:999px}
 .fm{display:block;color:var(--muted);font-size:.82rem}
 footer a{color:var(--accent)}footer{margin:0 0 12px;color:var(--muted);font-size:.9rem}summary{cursor:pointer}
-.az{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}.az button{min-width:34px;padding:5px 8px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;font:inherit;cursor:pointer}.az button.on{background:var(--accent);color:#fff;border-color:var(--accent)}.az button:disabled{opacity:.3;cursor:default}.az.off{opacity:.5}
+.az{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}.az button{min-width:34px;padding:5px 8px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;font:inherit;cursor:pointer}.az button.on{background:var(--accent);color:var(--onacc);border-color:var(--accent)}.az button:disabled{opacity:.3;cursor:default}.az.off{opacity:.5}
 .pager{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:10px 0;color:var(--muted);font-size:.9rem}.pager button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;padding:6px 14px;font:inherit;cursor:pointer}.pager button:disabled{opacity:.35;cursor:default}
-:root{--c1:#b4691f;--c1b:#fbefe0;--c2:#3d7a5f;--c2b:#e4f0e9;--c3:#3b6ea5;--c3b:#e3edf7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#e7a560;--c1b:#3a2e20;--c2:#7cc4a0;--c2b:#25352d;--c3:#8db8e8;--c3b:#1f2d3d}}
-:root[data-theme="dark"]{--c1:#e7a560;--c1b:#3a2e20;--c2:#7cc4a0;--c2b:#25352d;--c3:#8db8e8;--c3b:#1f2d3d}
+:root{--c1:#995410;--c1b:#fbefe0;--c2:#33705a;--c2b:#e4f0e9;--c3:#34659b;--c3b:#e3edf7;--onacc:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c1:#e7a560;--c1b:#3a2e20;--c2:#7cc4a0;--c2b:#25352d;--c3:#8db8e8;--c3b:#1f2d3d;--onacc:#10201a}}
+:root[data-theme="dark"]{--c1:#e7a560;--c1b:#3a2e20;--c2:#7cc4a0;--c2b:#25352d;--c3:#8db8e8;--c3b:#1f2d3d;--onacc:#10201a}
 .hero{background:linear-gradient(135deg,var(--accent2),var(--card));border:1px solid var(--line);border-radius:16px;padding:12px 16px 4px;margin-bottom:12px}
 .hero h1{margin:.1em 0}.hero .sub{margin:0 0 8px}
 .vc{transition:transform .15s,box-shadow .15s}.vc:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
@@ -61,7 +61,7 @@ footer a{color:var(--accent)}footer{margin:0 0 12px;color:var(--muted);font-size
 .vod{background:var(--c3b);border:1px solid var(--line);border-left:5px solid var(--c3);border-radius:12px;padding:10px 14px;margin:0 0 12px}
 .vod .lbl{display:block;font-size:.8rem;color:var(--c3);font-weight:600}.vod .vf{color:var(--muted);font-size:.9rem}.vod p{margin:4px 0}
 .vod button{border:1px solid var(--c3);background:none;color:var(--c3);border-radius:999px;padding:4px 14px;font:inherit;cursor:pointer}
-.qbtn{border:0;background:var(--accent);color:#fff;border-radius:999px;padding:8px 18px;font:inherit;font-weight:600;cursor:pointer;margin:2px 0 10px}
+.qbtn{border:0;background:var(--accent);color:var(--onacc);border-radius:999px;padding:8px 18px;font:inherit;font-weight:600;cursor:pointer;margin:2px 0 10px}
 .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:8px 0}
 .qq{font-size:1.05rem;font-weight:600;margin:0 0 6px}.qs{font-size:1.1rem;margin:4px 0 10px;color:var(--c3)}
 .qopts{display:grid;gap:8px}.opt{text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:10px 12px;font:inherit;cursor:pointer}
@@ -91,6 +91,13 @@ h1,h2,h3,.vod b,.dhero h2,.qq{font-family:ui-rounded,"SF Pro Rounded","Hiragino 
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.9}}
 @media (prefers-reduced-motion:reduce){.cf{display:none}}
 #ttl{cursor:pointer}
+.hrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 10px}.hrow .qbtn{margin:0}
+.pillb{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.abt{font-size:.9rem;color:var(--muted);margin:0 0 10px}
+.vod{padding:8px 14px;margin:8px 0 10px}.vod .vt{display:flex;justify-content:space-between;align-items:center}.vod .vt button{padding:2px 12px}.vod p{margin:2px 0}
+.quick .row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}.quick .row::-webkit-scrollbar{display:none}.quick .row button{flex:0 0 auto;margin:0}
+.quick{margin:0 0 8px}
+@media (max-width:480px){h1{font-size:1.3rem}.hero{padding:10px 12px 2px}.hbtn{gap:4px}.lang button,.tools button{padding:4px 9px}.hero .sub{font-size:.92rem}}
 .empty{color:var(--muted);padding:20px 0}
 </style>
 </head>
@@ -98,9 +105,8 @@ h1,h2,h3,.vod b,.dhero h2,.qq{font-family:ui-rounded,"SF Pro Rounded","Hiragino 
 <noscript><p style="padding:16px">Please enable JavaScript to use Verb Explorer. / Aktifkan JavaScript untuk memakai Verb Explorer.</p></noscript>
 <main>
 <div class="hero"><header><h1 id="ttl"></h1><div class="hbtn"><div class="lang"><button data-l="id" aria-label="Bahasa Indonesia">ID</button><button data-l="en" aria-label="English">EN</button></div><div class="tools"><button id="thm" aria-label="Theme">🌓</button><button id="fsz" aria-label="Font size">Aa</button></div></div></header>
-<p class="sub" id="sub"></p><p class="sub" id="cnt"></p><button class="qbtn" id="qb" data-qz="open"></button></div>
-<footer><details><summary id="abs"></summary><p id="abt"></p></details><p><a id="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfQisvpnamXDT9kbEwNd7PmX7xU5uJGSe-DAfEFgoRpispolg/viewform?usp=publish-editor" target="_blank" rel="noopener"></a></p></footer>
-<div id="list"><div id="vod"></div><div class="share" id="gsh"></div><div class="stick"><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div></div><div class="az" id="az"></div><div class="pager" id="pgt"></div><div class="grid" id="grid"></div><div class="pager" id="pgr"></div></div>
+<p class="sub" id="sub"></p><p class="sub" id="cnt"></p><div class="hrow"><button class="qbtn" id="qb" data-qz="open"></button><button class="pillb" id="abs" data-ab="1"></button><a class="pillb" id="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfQisvpnamXDT9kbEwNd7PmX7xU5uJGSe-DAfEFgoRpispolg/viewform?usp=publish-editor" target="_blank" rel="noopener"></a></div><p class="abt" id="abt" hidden></p></div>
+<div id="list"><div class="stick"><input id="q" type="search" autocomplete="off"><div class="chips" id="chips"></div></div><div id="vod"></div><div class="az" id="az"></div><div class="pager" id="pgt"></div><div class="grid" id="grid"></div><div class="pager" id="pgr"></div></div>
 <div id="detail" hidden></div><div id="quiz" hidden></div><div class="toast" id="toast" hidden></div>
 </main>
 <script>
@@ -2226,7 +2232,7 @@ function saveFav(){try{localStorage.setItem("ve-fav",JSON.stringify(FAV))}catch(
 function toggleFav(k){if(FAV[k])delete FAV[k];else FAV[k]=1;saveFav()}
 function esc(x){return String(x).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
 function speak(t){if(!window.speechSynthesis||!window.SpeechSynthesisUtterance){toast(L[lang].nospk);return}var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}
-function vod(){var s=L[lang],d=Math.floor(Date.now()/864e5),v=V[(d*37)%V.length];return '<div class="vod"><span class="lbl">🌟 '+s.vod+'</span><div><b>'+v[0]+'</b>'+tag(v)+' <small>'+cap(v[5])+'</small></div><div class="vf">'+v[0]+' · '+v[1]+' · '+v[2]+'</div><p>'+hsent(v,T[0],0)+'</p><button data-v="'+(v[9]||v[0])+'">'+s.opn+' ›</button></div>'}
+function vod(){var s=L[lang],d=Math.floor(Date.now()/864e5),v=V[(d*37)%V.length];return '<div class="vod"><div class="vt"><span class="lbl">🌟 '+s.vod+'</span><button data-v="'+(v[9]||v[0])+'">'+s.opn+' ›</button></div><div><b>'+v[0]+'</b>'+tag(v)+' <small>'+cap(v[5])+'</small></div><div class="vf">'+v[0]+' · '+v[1]+' · '+v[2]+'</div><p>'+hsent(v,T[0],0)+'</p></div>'}
 var QZ=null,QC={t:"mix",src:"all"},qzOn=false;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function rv(){return V[Math.floor(Math.random()*V.length)]}
@@ -2275,14 +2281,13 @@ function cycleTheme(){PF.th=(PF.th+1)%3;applyPrefs();savePrefs();toast(L[lang].t
 function cycleFont(){PF.fs=(PF.fs+1)%3;applyPrefs();savePrefs();toast(L[lang].fsz+": "+L[lang]["fs"+PF.fs])}
 var RC=[];try{RC=JSON.parse(localStorage.getItem("ve-recent")||"[]")||[]}catch(e){RC=[]}
 function addRecent(k){RC=[k].concat(RC.filter(function(x){return x!==k})).slice(0,6);try{localStorage.setItem("ve-recent",JSON.stringify(RC))}catch(e){}}
-var POP=["go","make-1","take-1","get-1","have-1","do","say","see-1","come","know","give-1","find","think","tell"];
+var POP=["go","make-1","take-1","get-1","have-1","do","say","see-1","come","know","give-1","find","think","tell","use","ask","call","try","help","play-1"];
 function byKey(k){return V.filter(function(v){return (v[9]||v[0])===k})[0]}
 function homeHtml(){var s=L[lang],ni=V.filter(function(v){return v[7]}).length,h=vod();
- h+='<div class="stats"><span>📚 '+V.length+' '+s.statv+'</span><span>🟠 '+ni+' '+s.i+'</span><span>🟢 '+(V.length-ni)+' '+s.r+'</span><span>🔵 '+M.length+' modal</span></div>';
- var btn=function(k){var v=byKey(k);return v?'<button data-v="'+k+'">'+v[0]+'</button>':""};
- h+='<div class="quick"><span class="lbl">🔥 '+s.pop+'</span>'+POP.map(btn).join("")+'</div>';
- if(RC.length)h+='<div class="quick"><span class="lbl">🕘 '+s.rec+'</span>'+RC.map(btn).join("")+'</div>';
- return h}
+  var btn=function(k){var v=byKey(k);return v?'<button data-v="'+k+'">'+v[0]+'</button>':""};
+ h+='<div class="quick"><span class="lbl">🔥 '+s.pop+'</span><div class="row">'+POP.map(btn).join("")+'</div></div>';
+ if(RC.length)h+='<div class="quick"><span class="lbl">🕘 '+s.rec+'</span><div class="row">'+RC.map(btn).join("")+'</div></div>';
+ return h+'<div class="share">'+sbar()+'</div>'}
 function updateStreak(){var d=Math.floor(Date.now()/864e5),S={};try{S=JSON.parse(localStorage.getItem("ve-streak")||"{}")||{}}catch(e){S={}}
  if(S.last===d){}else if(S.last===d-1){S.count=(S.count||0)+1;S.last=d}else{S.count=1;S.last=d}
  try{localStorage.setItem("ve-streak",JSON.stringify(S))}catch(e){}return S.count||1}
@@ -2313,7 +2318,7 @@ function sent(v,t,i){var h=hsh(v[9]||v[0],i),p=P[h%12],a=(v[8]&&SMK[i])?SMK[i]:M
 function tag(v){return '<span class="tag'+(v[7]?' irr':'')+'">'+(v[7]?L[lang].i:L[lang].r)+'</span>'+(v[8]?'<span class="tag">'+L[lang].st+'</span>':'')+(v[10]===1?'<span class="tag irr">⚠</span>':'')}
 function render(){
  var s=L[lang];document.documentElement.lang=lang;
- $("ttl").textContent="📚 "+s.ttl;$("sub").textContent=s.sub;$("abs").textContent=s.abs;$("abt").textContent=s.abt;$("fb").textContent="✉ "+s.fb;$("cnt").textContent=V.length+s.cnt+M.length+s.cm;$("q").placeholder=s.ph;
+ $("ttl").textContent="📚 "+s.ttl;$("sub").textContent=s.sub;$("abs").textContent="ℹ "+s.abs.split(" &")[0];$("abt").textContent=s.abt;$("fb").textContent="✉ "+cap(s.fb.replace(/^(Kirim|Send) /,""));$("cnt").textContent=V.length+s.cnt+M.length+s.cm;$("q").placeholder=s.ph;
  document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
  $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr],["mod",s.mod],["fav","★ "+s.fav]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
  var q=$("q").value.trim().toLowerCase();if(homeOn&&!q){ltr="A";flt="all"}
@@ -2325,13 +2330,14 @@ function render(){
   var ix=V.indexOf(v),pv=V[ix-1],nx=V[ix+1],nb=(pv?'<button data-v="'+(pv[9]||pv[0])+'">‹ '+pv[0]+'</button>':'')+(nx?'<button data-v="'+(nx[9]||nx[0])+'">'+nx[0]+' ›</button>':'');
   $("detail").innerHTML='<div class="nav2"><button class="back" id="bk">'+s.back+'</button><span>'+nb+'</span></div><div class="dhero '+(v[7]?'i':'r')+'"><h2>'+cap(v[0])+tag(v)+'</h2><p class="mean">'+cap(v[5])+'</p><div class="acts"><button class="favb'+(FAV[cur]?' on':'')+'" data-fav="'+cur+'">'+(FAV[cur]?'★ '+s.favr:'☆ '+s.favs)+'</button></div></div><div class="forms">'+[v[0],v[1],v[2],v[3],v[4]].map(function(x,i){return '<div class="f f'+(i+1)+'"><span>'+s.f[i]+'</span><b>'+x+'</b> <button class="spk" data-sp="'+esc(x)+'" aria-label="Pronounce">🔊</button></div>'}).join("")+'</div><div class="share">'+sbar()+'</div>'+(v[8]?'<div class="note">⚠ '+s.stn+'</div>':'')+(v[10]?'<div class="note">⚠ '+s.unat+'</div>':'')+'<h3>'+s.ex+'</h3><div class="tl"><button data-g="4" class="g1">⟵ '+s.tl1+'</button><button data-g="0" class="g2">'+s.tl2+'</button><button data-g="8" class="g3">'+s.tl3+' ⟶</button></div>'+T.map(function(t,i){var w=(v[8]&&i%2)||v[10]===1||(v[10]&&v[10].indexOf&&v[10].indexOf(i)>-1);return '<div class="t g'+(i<4?2:i<8?1:3)+(w?' w':'')+'" id="tn'+i+'"><h3>'+t[0]+' <em>· '+t[1]+'</em>'+(w?' <span class="tag irr">⚠ '+s.rare+'</span>':'')+'</h3><small class="fm">'+TD[i][0]+' · '+TD[i][lang==="id"?1:2]+'</small><p>'+hsent(v,t,i)+' <button class="spk" data-sp="'+esc(sent(v,t,i))+'" aria-label="Pronounce">🔊</button></p></div>'}).join("");
   $("bk").onclick=goBack;}
- $("gsh").innerHTML=sbar();$("vod").innerHTML=(homeOn&&!q&&flt==="all"&&pg===0)?homeHtml():"";$("qb").textContent="🎯 "+s.qz;$("list").hidden=!!cur||qzOn;document.title=(cur?cur.replace(/^m:/,"").replace(/-\d$/,"")+" · ":"")+"Verb Explorer";$("detail").hidden=!cur||qzOn;$("quiz").hidden=!qzOn;if(qzOn)$("quiz").innerHTML=renderQuiz();
+ $("vod").innerHTML=(homeOn&&!q&&flt==="all"&&pg===0)?homeHtml():"";$("qb").textContent="🎯 "+s.qz;$("list").hidden=!!cur||qzOn;document.title=(cur?cur.replace(/^m:/,"").replace(/-\d$/,"")+" · ":"")+"Verb Explorer";$("detail").hidden=!cur||qzOn;$("quiz").hidden=!qzOn;if(qzOn)$("quiz").innerHTML=renderQuiz();
 }
 document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
  if(b.dataset.l){lang=b.dataset.l;render()}
  else if(b.dataset.f){flt=b.dataset.f;pg=0;homeOn=false;render()}
  else if(b.id==="thm"){cycleTheme()}
  else if(b.id==="fsz"){cycleFont()}
+ else if(b.dataset.ab){var ap=$("abt");ap.hidden=!ap.hidden}
  else if(b.dataset.qz||b.dataset.qt||b.dataset.qs||b.dataset.qa!==undefined){quizClick(b)}
  else if(b.dataset.sp){speak(b.dataset.sp)}
  else if(b.dataset.fav){toggleFav(b.dataset.fav);render()}
