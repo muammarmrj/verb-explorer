@@ -114,6 +114,13 @@ header{flex-wrap:nowrap;gap:8px}h1{font-size:clamp(1.05rem,4.6vw,1.5rem);min-wid
 .fx div{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.88rem;margin:1px 0}.fx b{display:inline-block;width:1.4em}
 .us{margin:6px 0 2px}.sg{margin:2px 0;color:var(--muted);font-size:.9rem}.exs{margin:6px 0 0}
 @media print{.hero,#list,#detail,.back,.tbtools,.nav2,.cf,#toast,header{display:none!important}body{background:#fff;color:#000}#quiz{display:block!important}.t{break-inside:avoid}.tl{display:none}}
+.hrow .qbtn{background:var(--card);color:var(--text);border:1px solid var(--line);font-weight:400}
+.hrow button.on{background:var(--accent);color:var(--onacc);border-color:var(--accent);font-weight:600}
+.fx .vh{white-space:nowrap}
+.tbl{table-layout:fixed}.tbl th,.tbl td{padding:6px 5px;overflow-wrap:anywhere}
+.tbl td{border-bottom:0;font-size:.9rem}
+.tbl tr.mr td{font-family:inherit;color:var(--muted);font-size:.85rem;padding:0 5px 7px;border-bottom:1px solid var(--line)}
+.tbl tr.m1:hover,.tbl tr.m1:hover+tr.mr,.tbl tr.mr:hover{background:var(--accent2)}
 .empty{color:var(--muted);padding:20px 0}
 </style>
 </head>
@@ -2284,7 +2291,7 @@ function renderQuiz(){var s=L[lang],h='<button class="back" data-qz="close">← 
 function quizClick(b){var d=b.dataset;
  if(d.qt){QC.t=d.qt}else if(d.qs){QC.src=d.qs}
  else if(d.qa!==undefined){if(!QZ||QZ.ans>-1)return;var q=QZ.qs[QZ.i];QZ.ans=+d.qa;if(QZ.ans===q.ans)QZ.score++;else QZ.wrong.push(q.v)}
- else if(d.qz==="open"){qzOn=true;ovl="quiz";QZ={stage:"setup"}}
+ else if(d.qz==="open"){if(qzOn&&ovl==="quiz"){qzOn=false;QZ=null}else{qzOn=true;ovl="quiz";QZ={stage:"setup"}}}
  else if(d.qz==="close"){qzOn=false;QZ=null}
  else if(d.qz==="start"||d.qz==="again"){startQuiz()}
  else if(d.qz==="next"){QZ.i++;QZ.ans=-1;if(QZ.i>=QZ.qs.length){QZ.stage="end";QZ.streak=updateStreak()}}
@@ -2311,10 +2318,10 @@ function confetti(){var c=document.createElement("div");c.className="cf";var e=[
 var ovl="quiz",TB={g:"all",q:""};
 function pat(v){return v[0]===v[1]&&v[1]===v[2]?"AAA":v[1]===v[2]?"ABB":v[0]===v[2]?"ABA":"ABC"}
 function tbRows(){var q=TB.q.trim().toLowerCase();return V.filter(function(v){return v[7]&&(TB.g==="all"||pat(v)===TB.g)&&(!q||[v[0],v[1],v[2],v[5]].join(" ").toLowerCase().indexOf(q)>-1)})}
-function tbBody(){var r=tbRows().map(function(v){return '<tr data-v="'+(v[9]||v[0])+'"><td><b>'+v[0]+'</b></td><td>'+v[1]+'</td><td>'+v[2]+'</td><td>'+esc(cap(v[5]))+'</td></tr>'}).join("");return r||'<tr><td colspan="4" class="empty">'+L[lang].none+'</td></tr>'}
+function tbBody(){var r=tbRows().map(function(v){var k=(v[9]||v[0]);return '<tr class="m1" data-v="'+k+'"><td><b>'+v[0]+'</b></td><td>'+v[1]+'</td><td>'+v[2]+'</td></tr><tr class="mr" data-v="'+k+'"><td colspan="3">'+esc(cap(v[5]))+'</td></tr>'}).join("");return r||'<tr><td colspan="3" class="empty">'+L[lang].none+'</td></tr>'}
 function renderTable(){var s=L[lang],irr=V.filter(function(v){return v[7]}),cn={};irr.forEach(function(v){var p=pat(v);cn[p]=(cn[p]||0)+1});
  var chip=function(k,t){return '<button data-tbg="'+k+'" class="'+(TB.g===k?"on":"")+'">'+t+'</button>'};
- return '<div class="nav2"><button class="back" data-qz="close">← '+s.ovc+'</button><button class="favb" data-pr="1">🖨 '+s.tbp+'</button></div><h2 style="margin:0">📋 '+s.tbt+'</h2><p class="sub">'+s.tbi+'</p><div class="tbtools"><input id="tq" type="search" autocomplete="off" placeholder="'+esc(s.tbs)+'" value="'+esc(TB.q)+'"><div class="chips tbchips">'+chip("all",s.all+" ("+irr.length+")")+chip("AAA","A-A-A ("+(cn.AAA||0)+")")+chip("ABB","A-B-B ("+(cn.ABB||0)+")")+chip("ABA","A-B-A ("+(cn.ABA||0)+")")+chip("ABC","A-B-C ("+(cn.ABC||0)+")")+'</div></div><p class="sub">'+s["tbh_"+TB.g]+'</p><table class="tbl"><thead><tr><th>V1</th><th>V2</th><th>V3</th><th>'+s.tbm+'</th></tr></thead><tbody id="tbody">'+tbBody()+'</tbody></table>'}
+ return '<div class="nav2"><button class="back" data-qz="close">← '+s.ovc+'</button><button class="favb" data-pr="1">🖨 '+s.tbp+'</button></div><h2 style="margin:0">📋 '+s.tbt+'</h2><p class="sub">'+s.tbi+'</p><div class="tbtools"><input id="tq" type="search" autocomplete="off" placeholder="'+esc(s.tbs)+'" value="'+esc(TB.q)+'"><div class="chips tbchips">'+chip("all",s.all+" ("+irr.length+")")+chip("AAA","A-A-A ("+(cn.AAA||0)+")")+chip("ABB","A-B-B ("+(cn.ABB||0)+")")+chip("ABA","A-B-A ("+(cn.ABA||0)+")")+chip("ABC","A-B-C ("+(cn.ABC||0)+")")+'</div></div><p class="sub">'+s["tbh_"+TB.g]+'</p><table class="tbl"><thead><tr><th>V1</th><th>V2</th><th>V3</th></tr></thead><tbody id="tbody">'+tbBody()+'</tbody></table>'}
 var TX=[["S + V1 (+s/es)","S + do/does not + V1","Do/Does + S + V1?","Kebiasaan, fakta umum, dan jadwal tetap.","Habits, general facts and fixed schedules.","always, usually, often, every day, on weekends"],
 ["S + am/is/are + V-ing","S + am/is/are not + V-ing","Am/Is/Are + S + V-ing?","Kejadian yang sedang berlangsung saat ini atau bersifat sementara.","Actions happening now or temporary situations.","now, right now, at the moment, today, these days"],
 ["S + have/has + V3","S + have/has not + V3","Have/Has + S + V3?","Kejadian yang sudah selesai tetapi masih berkaitan dengan sekarang.","Finished actions with a link to the present.","already, yet, just, ever, never, for, since, recently"],
@@ -2359,7 +2366,7 @@ function sent(v,t,i){var h=hsh(v[9]||v[0],i),p=P[h%12],a=(v[8]&&SMK[i])?SMK[i]:M
 function tag(v){return '<span class="tag'+(v[7]?' irr':'')+'">'+(v[7]?L[lang].i:L[lang].r)+'</span>'+(v[8]?'<span class="tag">'+L[lang].st+'</span>':'')+(v[10]===1?'<span class="tag irr">⚠</span>':'')}
 function render(){
  var s=L[lang];document.documentElement.lang=lang;
- $("ttl").textContent="📚 "+s.ttl;$("sub").textContent=s.sub;$("abs").textContent="ℹ️";$("abs").setAttribute("aria-label",s.abs.split(" &")[0]);$("otb").textContent="📋 "+s.otb;$("ots").textContent="🕒 "+s.ots;$("abtx").textContent=s.abt;$("gsh").innerHTML=sbar();$("fb").textContent="💬 "+cap(s.fb.replace(/^(Kirim|Send) /,""));$("cnt").textContent=V.length+s.cnt+M.length+s.cm;$("q").placeholder=s.ph;
+ $("ttl").textContent="📚 "+s.ttl;$("sub").textContent=s.sub;$("abs").textContent="ℹ️";$("abs").setAttribute("aria-label",s.abs.split(" &")[0]);$("otb").textContent="📋 "+s.otb;$("ots").textContent="🕒 "+s.ots;[["qb","quiz"],["otb","table"],["ots","tense"]].forEach(function(a){var e=$(a[0]),f=qzOn&&ovl===a[1];e.classList.toggle("on",f);e.setAttribute("aria-pressed",f?"true":"false")});$("abtx").textContent=s.abt;$("gsh").innerHTML=sbar();$("fb").textContent="💬 "+cap(s.fb.replace(/^(Kirim|Send) /,""));$("cnt").textContent=V.length+s.cnt+M.length+s.cm;$("q").placeholder=s.ph;
  document.querySelectorAll(".lang button").forEach(function(b){b.className=b.dataset.l===lang?"on":""});
  $("chips").innerHTML=[["all",s.all],["reg",s.reg],["irr",s.irr],["mod",s.mod],["fav","★ "+s.fav]].map(function(c){return '<button data-f="'+c[0]+'" class="'+(flt===c[0]?"on":"")+'">'+c[1]+'</button>'}).join("");
  var q=$("q").value.trim().toLowerCase();if(homeOn&&!q){ltr="A";flt="all"}
@@ -2378,7 +2385,7 @@ document.addEventListener("click",function(e){var tr=e.target.closest&&e.target.
  else if(b.dataset.f){flt=b.dataset.f;pg=0;homeOn=false;render()}
  else if(b.id==="thm"){cycleTheme()}
  else if(b.id==="fsz"){cycleFont()}
- else if(b.dataset.ov){qzOn=true;ovl=b.dataset.ov;QZ=null;render();window.scrollTo(0,0)}
+ else if(b.dataset.ov){if(qzOn&&ovl===b.dataset.ov){qzOn=false;QZ=null}else{qzOn=true;ovl=b.dataset.ov;QZ=null}render();window.scrollTo(0,0)}
  else if(b.dataset.tbg){TB.g=b.dataset.tbg;render()}
  else if(b.dataset.pr){window.print()}
  else if(b.dataset.ab){var ap=$("abt");ap.hidden=!ap.hidden}
